@@ -1,7 +1,20 @@
+import { useState } from "react";
 import "./Principal.css";
 import heroImg from "../assets/foto1.jpg";
+import camionVideo from "../assets/Camion.mp4";
+import TransporteIcon from "../assets/camion.svg"; 
+
 
 export default function Principal() {
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const toggleFlip = (cardId) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardId]: !prev[cardId]
+    }));
+  };
+
   return (
     <main className="home">
       {/* === HERO === */}
@@ -14,7 +27,7 @@ export default function Principal() {
             Transporte de Ganado<br />Confiable y Seguro
           </h1>
           <p>
-            Operación nacional, bienestar animal y monitoreo en tiempo real para que tu envío
+            Operación nacional e internacional, bienestar animal y monitoreo en tiempo real para que tu envío
             llegue a tiempo y en óptimas condiciones.
           </p>
           <div className="hero-actions">
@@ -39,28 +52,145 @@ export default function Principal() {
         <p className="section-subtitle">Soluciones integrales para el transporte de ganado</p>
         
         <div className="service-grid">
-          <article className="service-card">
-            <div className="service-icon">🚛</div>
-            <h3>Transporte Especializado</h3>
-            <p>
-              Logística completa y manejo especializado para traslado de ganado con vehículos adaptados y certificados.
-            </p>
+          {/* Tarjeta 1: Transporte Especializado */}
+          <article 
+            className={`service-card-flip ${flippedCards['card1'] ? 'flipped' : ''}`}
+            onClick={() => toggleFlip('card1')}
+          >
+            <div className="card-inner">
+              {/* FRENTE - Con Video */}
+              <div className="card-front">
+                <div className="video-container">
+                  <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="card-video"
+                  >
+                    <source src={camionVideo} type="video/mp4" />
+                  </video>
+                  <div className="video-overlay">
+                    <div className="service-icon">🚛</div>
+                    <h3>Transporte Especializado</h3>
+                    <span className="flip-hint">Click para más info</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* REVERSO - Con Información */}
+              <div className="card-back">
+                <div className="card-back-content">
+                  <div className="service-icon">🚛</div>
+                  <h3>Transporte Especializado</h3>
+                  <ul className="service-details">
+                    <li>✓ Flota moderna y certificada</li>
+                    <li>✓ Vehículos con ventilación óptima</li>
+                    <li>✓ Sistemas de suspensión adaptados</li>
+                    <li>✓ Capacidad desde 10 hasta 50 cabezas</li>
+                    <li>✓ Cumplimiento normativas internacionales</li>
+                  </ul>
+                  <a href="/servicios/transporte" className="card-link">
+                    Ver más detalles →
+                  </a>
+                  <span className="flip-hint-back">Click para volver</span>
+                </div>
+              </div>
+            </div>
           </article>
-          
-          <article className="service-card">
-            <div className="service-icon">📍</div>
-            <h3>Monitoreo GPS</h3>
-            <p>
-              Ruteo inteligente y monitoreo en tiempo real con puntos de control estratégicos para máxima seguridad.
-            </p>
+
+          {/* Tarjeta 2: Monitoreo GPS */}
+          <article 
+            className={`service-card-flip ${flippedCards['card2'] ? 'flipped' : ''}`}
+            onClick={() => toggleFlip('card2')}
+          >
+            <div className="card-inner">
+              {/* FRENTE - Con Video */}
+              <div className="card-front">
+                <div className="video-container">
+                  <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="card-video"
+                  >
+                    <source src="https://cdn.coverr.co/videos/coverr-gps-navigation-6279/1080p.mp4" type="video/mp4" />
+                  </video>
+                  <div className="video-overlay">
+                    <div className="service-icon">📍</div>
+                    <h3>Monitoreo GPS</h3>
+                    <span className="flip-hint">Click para más info</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* REVERSO - Con Información */}
+              <div className="card-back">
+                <div className="card-back-content">
+                  <div className="service-icon">📍</div>
+                  <h3>Monitoreo GPS</h3>
+                  <ul className="service-details">
+                    <li>✓ Rastreo en tiempo real 24/7</li>
+                    <li>✓ Alertas automáticas de desviaciones</li>
+                    <li>✓ Historial completo de rutas</li>
+                    <li>✓ Optimización de tiempos de entrega</li>
+                    <li>✓ Plataforma web y app móvil</li>
+                  </ul>
+                  <a href="/rastreo" className="card-link">
+                    Ver más detalles →
+                  </a>
+                  <span className="flip-hint-back">Click para volver</span>
+                </div>
+              </div>
+            </div>
           </article>
-          
-          <article className="service-card">
-            <div className="service-icon">🐄</div>
-            <h3>Bienestar Animal</h3>
-            <p>
-              Protocolos certificados de bienestar animal y seguridad durante todo el recorrido, con personal capacitado.
-            </p>
+
+          {/* Tarjeta 3: Bienestar Animal */}
+          <article 
+            className={`service-card-flip ${flippedCards['card3'] ? 'flipped' : ''}`}
+            onClick={() => toggleFlip('card3')}
+          >
+            <div className="card-inner">
+              {/* FRENTE - Con Video */}
+              <div className="card-front">
+                <div className="video-container">
+                  <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="card-video"
+                  >
+                    <source src="https://cdn.coverr.co/videos/coverr-cows-in-a-field-5080/1080p.mp4" type="video/mp4" />
+                  </video>
+                  <div className="video-overlay">
+                    <div className="service-icon">🐄</div>
+                    <h3>Bienestar Animal</h3>
+                    <span className="flip-hint">Click para más info</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* REVERSO - Con Información */}
+              <div className="card-back">
+                <div className="card-back-content">
+                  <div className="service-icon">🐄</div>
+                  <h3>Bienestar Animal</h3>
+                  <ul className="service-details">
+                    <li>✓ Protocolos certificados de manejo</li>
+                    <li>✓ Personal capacitado especializado</li>
+                    <li>✓ Control de temperatura y humedad</li>
+                    <li>✓ Paradas estratégicas programadas</li>
+                    <li>✓ Supervisión veterinaria disponible</li>
+                  </ul>
+                  <a href="/servicios/bienestar" className="card-link">
+                    Ver más detalles →
+                  </a>
+                  <span className="flip-hint-back">Click para volver</span>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
       </section>

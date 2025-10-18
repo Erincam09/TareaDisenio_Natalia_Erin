@@ -142,7 +142,7 @@ export default function Header() {
         {/* CTA / Login - Oculto cuando está colapsado */}
         {!isCollapsed && (
           <div className="cta-zone">
-            <a href="/login" className="btn-pill">Login</a>
+            <a href="/login" className="btn-pill">Cuenta</a>
           </div>
         )}
       </nav>
