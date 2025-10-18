@@ -67,6 +67,7 @@ export default function Principal() {
                     muted 
                     playsInline
                     className="card-video"
+                    onEnded={(e) => e.target.play()} 
                   >
                     <source src={camionVideo} type="video/mp4" />
                   </video>
